@@ -32,66 +32,57 @@ Il faut créer un compte dans cette url: http://10.13.112.154/
 # Liste projets dans prod
 ### ERP
 - Backend:
-sh```
+
     # Dir
-    cd /home/gpao/apps/gpao_main_api
+    **cd /home/gpao/apps/gpao_main_api**
 
     # Redemarrer le service docker 
-    docker compose -f docker-compose-prod.yml up -d --build
-```
+    **docker compose -f docker-compose-prod.yml up -d --build**
+
 
 - Frontend:
-sh```
+
     # Dir
-    cd /var/www/html/gpao-front
+    **cd /var/www/html/gpao-front**
 
     # Redemarrer le service nginx 
-    sudo service nginx restart
-```
+    **sudo service nginx restart**
+
 
 - Analyse 
-sh```
+
     # Dir
-    cd /home/gpao/apps/gpao_routine
+    **cd /home/gpao/apps/gpao_routine**
 
     # Basculer vers la variable d'environnement
-    source venv/bin/activate
+    **source venv/bin/activate**
 
     # Lancer un parametre dans le main
-    python main.py -atpj (pour charger la table 'fait_rh_temps_passse_journalier' par exemple)
-```
+    **python main.py -atpj** (pour charger la table 'fait_rh_temps_passse_journalier' par exemple)
+
 
 - Export 
 A chaque bug de l'export il faut lancer cette commande
-sh```
-    # Redemarrer le service export
-    docker restart node_app_2
-```
+  **docker restart node_app_2**
+
 
 - Fgame
-sh```
     # Dir
-    cd /home/gpao/apps/fgame_main_api
+    **cd /home/gpao/apps/fgame_main_api**
 
     # Build
-    docker build -t fgame_main_api .
+    **docker build -t fgame_main_api .**
 
     # Run with volume
-    docker run -d -p 3343:3343 -p 3333:3333 -v /home/gpao/apps/fgame/fgame_main_api/media:/code/media -v /etc/ssl/nginx/:/etc/ssl/nginx/ --name fgame_main_api fgame_main_api
-```
+    **docker run -d -p 3343:3343 -p 3333:3333 -v /home/gpao/apps/fgame/fgame_main_api/media:/code/media -v /etc/ssl/nginx/:/etc/ssl/nginx/ --name fgame_main_api fgame_main_api**
+
 
 
 # Modifier un horaire exceptionnel dans la base
 Utiliser cette requete pour gerer l'horaire exceptionnel dans la base et modifier les données dans le pgadmin
 
-sh```
-    SELECT
-        ex.*
-    FROM mod_rh_user_horaire_exception_shift ex
-    JOIN mod_rh_user_profile up ON up.user_ptr_id = ex.user_id
-    WHERE up.matricule = 'xxx' 
-    ORDER BY ex.date_debut DESC
+**SELECT ex.* FROM mod_rh_user_horaire_exception_shift ex JOIN mod_rh_user_profile up ON up.user_ptr_id = ex.user_id WHERE up.matricule = 'xxx' ORDER BY ex.date_debut DESC**
 
     # NB: xxx: Matricule qu'on va gerer
-```
+
 
