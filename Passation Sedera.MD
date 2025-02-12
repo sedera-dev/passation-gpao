@@ -30,50 +30,50 @@ Ou bien utiliser cette url pour acceder au pgadmin web local
 Il faut créer un compte dans cette url: http://10.13.112.154/ 
 
 # Liste projets dans prod
-### ERP
-- Backend:
 
-    # Dir
+### Backend ERP:
+
+    - Dir
     **cd /home/gpao/apps/gpao_main_api**
 
-    # Redemarrer le service docker 
+    - Redemarrer le service docker 
     **docker compose -f docker-compose-prod.yml up -d --build**
 
 
-- Frontend:
+### Frontend ERP
 
-    # Dir
+    - Dir
     **cd /var/www/html/gpao-front**
 
-    # Redemarrer le service nginx 
+    - Redemarrer le service nginx 
     **sudo service nginx restart**
 
 
-- Analyse 
+### Analyse 
 
-    # Dir
+    - Dir
     **cd /home/gpao/apps/gpao_routine**
 
-    # Basculer vers la variable d'environnement
+    - Basculer vers la variable d'environnement
     **source venv/bin/activate**
 
-    # Lancer un parametre dans le main
+    - Lancer un parametre dans le main
     **python main.py -atpj** (pour charger la table 'fait_rh_temps_passse_journalier' par exemple)
 
 
-- Export 
+### Export 
 A chaque bug de l'export il faut lancer cette commande
   **docker restart node_app_2**
 
 
-- Fgame
-    # Dir
+### Fgame
+    - Dir
     **cd /home/gpao/apps/fgame_main_api**
 
-    # Build
+    - Build
     **docker build -t fgame_main_api .**
 
-    # Run with volume
+    - Run with volume
     **docker run -d -p 3343:3343 -p 3333:3333 -v /home/gpao/apps/fgame/fgame_main_api/media:/code/media -v /etc/ssl/nginx/:/etc/ssl/nginx/ --name fgame_main_api fgame_main_api**
 
 
