@@ -5,6 +5,10 @@
 
 NB: le mot de passe est: Gp5894
 
+# Application web ERP
+- Dev:  https://dev-gpao.futurmap.local/login
+- Preprod: https://staging-erp.futurmap.local/
+- Prod: https://erp.futurmap.local/accueil
 # Accès à la base de données
 ERP
 - Name: gpao_prod
